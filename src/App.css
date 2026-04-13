@@ -1,0 +1,54 @@
+/* 🌌 Background */
+.main-container {
+  background: #0a0f1c;
+  color: #e6faff;
+  min-height: 100vh;
+}
+
+/* 💻 Loading Screen */
+.loading-screen {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #020617;
+  color: #00f7ff;
+  font-family: monospace;
+}
+
+/* 🌌 Particles */
+.particles {
+  position: fixed;
+  z-index: 0;
+}
+
+/* Content Layer */
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+/* 🎮 3D CARD */
+.custom-card {
+  background: #111827;
+  color: #e6faff;
+  padding: 20px;
+  border-radius: 15px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Glow effect */
+.custom-card:hover {
+  box-shadow: 0 20px 40px rgba(0, 255, 255, 0.3);
+}
+
+.custom-card {
+  background: rgba(20, 30, 50, 0.7);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
+
+.custom-card:hover {
+  transform: scale(1.02);
+}
