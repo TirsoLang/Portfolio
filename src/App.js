@@ -14,6 +14,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showDock, setShowDock] = useState(true);
   const [loading, setLoading] = useState(true);
   const [text, setText] = useState("");
   const fullText = "> Initializing Portfolio...";
@@ -52,6 +53,24 @@ export default function Portfolio() {
   const handleMouseLeave = (e) => {
     e.currentTarget.style.transform = "rotateX(0) rotateY(0) scale(1)";
   };
+  useEffect(() => {
+  let lastScrollY = window.scrollY;
+
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY) {
+      setShowDock(false); // scroll down
+    } else {
+      setShowDock(true); // scroll up
+    }
+
+    lastScrollY = window.scrollY;
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
+
 
   if (loading) {
     return (
@@ -268,7 +287,8 @@ export default function Portfolio() {
           <p>© 2026 Julian Dane C. Cultura</p>
         </footer>
         {/* BOTTOM DOCK */}
-        <div className="bottom-dock">
+        <div className={`bottom-dock ${showDock ? "show" : "hide"}`}>
+
 
   <button onClick={() => window.open("https://www.facebook.com/jd.cultura")}>
     <i className="fab fa-facebook-f"></i>

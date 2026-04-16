@@ -135,3 +135,12 @@
   transform: scale(1.2);
   color: #ffffff;
 }
+/* SHOW */
+.bottom-dock.show {
+  transform: translateY(0);
+}
+
+/* HIDE */
+.bottom-dock.hide {
+  transform: translateY(100%);
+}
