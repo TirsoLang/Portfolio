@@ -10,10 +10,11 @@ import LipaAlertHub from "./assets/LipaAlertHub.png";
 import LipaAlertHubPDF from "./assets/LipaAlertHub.pdf";
 import Resume from "./assets/Resume.pdf";
 import CulturaImg from "./assets/Cultura1x1.png";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 export default function Portfolio() {
+  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-
   const [text, setText] = useState("");
   const fullText = "> Initializing Portfolio...";
 
@@ -73,22 +74,22 @@ export default function Portfolio() {
 
         <nav className="navbar navbar-dark bg-dark px-4 sticky-top">
           <div className="d-flex align-items-center">
-  <img
-    src={CulturaImg}
-    alt="Profile"
-    style={{
-      width: "45px",
-      height: "45px",
-      borderRadius: "50%",
-      objectFit: "cover",
-      marginRight: "10px"
-    }}
-  />
+            <img
+              src={CulturaImg}
+              alt="Profile"
+              style={{
+                width: "45px",
+                height: "45px",
+                borderRadius: "50%",
+                objectFit: "cover",
+                marginRight: "10px"
+              }}
+            />
 
-  <span className="navbar-brand text-info fw-bold mb-0">
-    Julian Dane C. Cultura
-  </span>
-</div>
+            <span className="navbar-brand text-info fw-bold mb-0">
+              Julian Dane C. Cultura
+            </span>
+          </div>
           <div>
             <button
               className="btn btn-outline-info me-2"
@@ -252,6 +253,45 @@ export default function Portfolio() {
         <footer className="text-center p-3 bg-dark">
           <p>© 2026 Julian Dane C. Cultura</p>
         </footer>
+        {/* FLOATING MENU */}
+        <div className="fab-container">
+          <button
+            className={`fab-main ${menuOpen ? "open" : ""}`}
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            +
+          </button>
+
+          <div className={`fab-menu ${menuOpen ? "show" : ""}`}>
+            <button
+              className="fab-item fab1"
+              onClick={() => window.open("https://www.facebook.com/jd.cultura")}
+            >
+              <i className="fab fa-facebook-f"></i>
+            </button>
+
+            <button
+              className="fab-item fab2"
+              onClick={() => window.open("https://x.com/jdcultura?s=21")}
+            >
+              <i className="fab fa-x"></i>
+            </button>
+
+            <button
+              className="fab-item fab3"
+              onClick={() => window.open("https://www.instagram.com/doctirsoo/")}
+            >
+              <i className="fab fa-instagram"></i>
+            </button>
+
+            <button
+              className="fab-item fab4"
+              onClick={() => window.open("https://github.com/TirsoLang")}
+            >
+              <i className="fab fa-github"></i>
+            </button>
+          </div>
+        </div>
       </div>
     </div>
 
