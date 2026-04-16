@@ -72,37 +72,51 @@ export default function Portfolio() {
 
       <div className="content">
 
-        <nav className="navbar navbar-dark bg-dark px-4 sticky-top">
-          <div className="d-flex align-items-center">
-            <img
-              src={CulturaImg}
-              alt="Profile"
-              style={{
-                width: "45px",
-                height: "45px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                marginRight: "10px"
-              }}
-            />
+       <nav className="navbar navbar-dark bg-dark px-4 sticky-top">
+  <div className="d-flex align-items-center">
+    <img
+      src={CulturaImg}
+      alt="Profile"
+      style={{
+        width: "45px",
+        height: "45px",
+        borderRadius: "50%",
+        objectFit: "cover",
+        marginRight: "10px"
+      }}
+    />
 
-            <span className="navbar-brand text-info fw-bold mb-0">
-              Julian Dane C. Cultura
-            </span>
-          </div>
-          <div>
-            <button
-              className="btn btn-outline-info me-2"
-              onClick={() => window.open(Resume, "_blank")}
-            >
-              Open Resume
-            </button>
-            <a href="#profile" className="btn btn-outline-info me-2">Profile</a>
-            <a href="#achievements" className="btn btn-outline-info me-2">Achievements</a>
-            <a href="#skills" className="btn btn-outline-info me-2">Skills</a>
-            <a href="#projects" className="btn btn-outline-info">Projects</a>
-          </div>
-        </nav>
+    <span className="navbar-brand text-info fw-bold mb-0">
+      Julian Dane C. Cultura
+    </span>
+  </div>
+
+  {/* MENU BUTTON */}
+  <button
+    className="menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+  >
+    ☰
+  </button>
+
+  {/* DROPDOWN MENU */}
+  {menuOpen && (
+    <div className="menu-dropdown">
+      <button
+        className="btn btn-outline-info w-100 mb-2"
+        onClick={() => window.open(Resume, "_blank")}
+      >
+        Open Resume
+      </button>
+
+      <a href="#profile" className="menu-link">Profile</a>
+      <a href="#achievements" className="menu-link">Achievements</a>
+      <a href="#skills" className="menu-link">Skills</a>
+      <a href="#projects" className="menu-link">Projects</a>
+    </div>
+  )}
+</nav>
+
 
         <section className="text-center py-5">
           <motion.h1 className="text-info"
@@ -253,45 +267,27 @@ export default function Portfolio() {
         <footer className="text-center p-3 bg-dark">
           <p>© 2026 Julian Dane C. Cultura</p>
         </footer>
-        {/* FLOATING MENU */}
-        <div className="fab-container">
-          <button
-            className={`fab-main ${menuOpen ? "open" : ""}`}
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            +
-          </button>
+        {/* BOTTOM DOCK */}
+        <div className="bottom-dock">
 
-          <div className={`fab-menu ${menuOpen ? "show" : ""}`}>
-            <button
-              className="fab-item fab1"
-              onClick={() => window.open("https://www.facebook.com/jd.cultura")}
-            >
-              <i className="fab fa-facebook-f"></i>
-            </button>
+  <button onClick={() => window.open("https://www.facebook.com/jd.cultura")}>
+    <i className="fab fa-facebook-f"></i>
+  </button>
 
-            <button
-              className="fab-item fab2"
-              onClick={() => window.open("https://x.com/jdcultura?s=21")}
-            >
-              <i className="fab fa-x"></i>
-            </button>
+  <button onClick={() => window.open("https://x.com/jdcultura?s=21")}>
+    <i className="fab fa-x-twitter"></i>
+  </button>
 
-            <button
-              className="fab-item fab3"
-              onClick={() => window.open("https://www.instagram.com/doctirsoo/")}
-            >
-              <i className="fab fa-instagram"></i>
-            </button>
+  <button onClick={() => window.open("https://www.instagram.com/doctirsoo/")}>
+    <i className="fab fa-instagram"></i>
+  </button>
 
-            <button
-              className="fab-item fab4"
-              onClick={() => window.open("https://github.com/TirsoLang")}
-            >
-              <i className="fab fa-github"></i>
-            </button>
-          </div>
-        </div>
+  <button onClick={() => window.open("https://github.com/TirsoLang")}>
+    <i className="fab fa-github"></i>
+  </button>
+
+</div>
+
       </div>
     </div>
 
