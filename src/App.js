@@ -58,17 +58,16 @@ export default function Portfolio() {
 
   const handleScroll = () => {
     const currentScrollY = window.scrollY;
-
     const scrollDiff = currentScrollY - lastScrollY;
 
     const isNearBottom =
-      window.innerHeight + currentScrollY >= document.body.offsetHeight - 10;
+      window.innerHeight + currentScrollY >= document.body.offsetHeight - 5;
 
-    // 👇 Ignore tiny movements (bounce effect fix)
-    if (Math.abs(scrollDiff) < 8) return;
+    // 👇 Only ignore VERY tiny movement (not too high)
+    if (Math.abs(scrollDiff) < 3) return;
 
-    // 👇 If at bottom, keep dock hidden
-    if (isNearBottom) {
+    // 👇 If near bottom, NEVER show dock
+    if (isNearBottom && scrollDiff < 0) {
       setShowDock(false);
     } else {
       if (scrollDiff > 0) {
@@ -87,15 +86,13 @@ export default function Portfolio() {
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
-
-  if (loading) {
-    return (
-      <div className="loading-screen">
-        <h2>{text} |</h2>
-      </div>
-    );
-  }
-
+if (loading) {
+  return (
+    <div className="loading-screen">
+      <h2>{text} |</h2>
+    </div>
+  );
+}
   return (
     <div className="main-container">
 

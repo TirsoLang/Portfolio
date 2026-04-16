@@ -177,19 +177,67 @@
       0 0 16px rgba(0, 255, 255, 0.2);
   }
 }
+/* ============================= */
+/* 🌌 BOTTOM DOCK (GLASS + NEON) */
+/* ============================= */
+
+.bottom-dock {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: calc(12px + env(safe-area-inset-bottom));
+
+  width: 90%;
+  max-width: 420px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 10px;
+
+  border-radius: 18px;
+
+  /* 🌫 Glass */
+  background: rgba(20, 30, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* ✨ Neon glow */
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.4),
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 10px rgba(0, 255, 255, 0.1);
+
+  z-index: 1000;
+
+  transition: transform 0.35s ease, opacity 0.3s ease;
+  animation: neonPulse 3s infinite ease-in-out;
+}
+
+/* ============================= */
+/* ✨ ICON BUTTONS */
+/* ============================= */
+
 .bottom-dock button {
   background: transparent;
   border: none;
   color: #00f7ff;
+
   font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+
+  cursor: pointer;
 
   transition: all 0.25s ease;
 }
 
-/* Hover glow */
+/* 🔥 Hover glow */
 .bottom-dock button:hover {
-  color: #00ffff;
   transform: scale(1.2);
+  color: #00ffff;
 
   text-shadow:
     0 0 5px #00ffff,
@@ -197,14 +245,107 @@
     0 0 20px #00ffff;
 }
 
-/* Click effect */
+/* 👇 Click */
 .bottom-dock button:active {
   transform: scale(0.9);
 }
+
+/* 🎯 Active icon */
 .bottom-dock button.active {
   color: #00ffff;
 
   text-shadow:
     0 0 8px #00ffff,
     0 0 20px #00ffff;
+}
+
+/* ============================= */
+/* 🎬 SHOW / HIDE */
+/* ============================= */
+
+.bottom-dock.show {
+  transform: translate(-50%, 0);
+  opacity: 1;
+}
+
+.bottom-dock.hide {
+  transform: translate(-50%, 120%);
+  opacity: 0;
+}
+
+/* ============================= */
+/* 🎞 Animations */
+/* ============================= */
+
+@keyframes dockPop {
+  0% {
+    transform: translate(-50%, 120%);
+    opacity: 0;
+  }
+  60% {
+    transform: translate(-50%, -5px);
+  }
+  100% {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+.bottom-dock.show {
+  animation: dockPop 0.4s ease;
+}
+
+@keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.3),
+      0 0 16px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.7),
+      0 0 30px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.3),
+      0 0 16px rgba(0, 255, 255, 0.2);
+  }
+}
+
+/* ============================= */
+/* 📱 RESPONSIVE */
+/* ============================= */
+
+/* Small phones */
+@media (max-width: 480px) {
+  .bottom-dock {
+    width: 95%;
+    padding: 8px;
+    border-radius: 15px;
+  }
+
+  .bottom-dock button {
+    font-size: 18px;
+    padding: 8px;
+  }
+}
+
+/* Tablets */
+@media (min-width: 481px) and (max-width: 768px) {
+  .bottom-dock {
+    max-width: 380px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .bottom-dock {
+    max-width: 350px;
+    bottom: 20px;
+  }
+
+  .bottom-dock button {
+    font-size: 18px;
+  }
 }
