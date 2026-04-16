@@ -111,36 +111,100 @@
   justify-content: space-around;
   align-items: center;
 
-  background: rgba(10, 15, 28, 0.95);
+  background: rgba(10, 15, 28, 0.85);
   backdrop-filter: blur(10px);
 
   padding: 12px 0;
   z-index: 1000;
 
   border-top: 1px solid rgba(0, 255, 255, 0.2);
+
+  /* 👇 Smooth animation */
+  transition: 
+    transform 0.4s ease,
+    opacity 0.3s ease,
+    backdrop-filter 0.3s ease;
 }
 
-/* ICON STYLE */
+.bottom-dock {
+  position: fixed;
+  bottom: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 90%;
+  max-width: 400px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  padding: 12px;
+
+  border-radius: 20px;
+
+  /* 🌫 Glass effect */
+  background: rgba(20, 30, 50, 0.4);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* ✨ Neon glow */
+  box-shadow:
+    0 0 10px rgba(0, 255, 255, 0.4),
+    0 0 20px rgba(0, 255, 255, 0.2),
+    inset 0 0 10px rgba(0, 255, 255, 0.1);
+
+  border: 1px solid rgba(0, 255, 255, 0.3);
+
+  z-index: 1000;
+
+  transition: all 0.3s ease;
+}
+@keyframes neonPulse {
+  0% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.3),
+      0 0 16px rgba(0, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 18px rgba(0, 255, 255, 0.7),
+      0 0 30px rgba(0, 255, 255, 0.4);
+  }
+  100% {
+    box-shadow:
+      0 0 8px rgba(0, 255, 255, 0.3),
+      0 0 16px rgba(0, 255, 255, 0.2);
+  }
+}
 .bottom-dock button {
-  background: none;
+  background: transparent;
   border: none;
   color: #00f7ff;
-  font-size: 22px;
-  cursor: pointer;
-  transition: 0.3s;
+  font-size: 20px;
+
+  transition: all 0.25s ease;
 }
 
-/* HOVER EFFECT */
+/* Hover glow */
 .bottom-dock button:hover {
+  color: #00ffff;
   transform: scale(1.2);
-  color: #ffffff;
-}
-/* SHOW */
-.bottom-dock.show {
-  transform: translateY(0);
+
+  text-shadow:
+    0 0 5px #00ffff,
+    0 0 10px #00ffff,
+    0 0 20px #00ffff;
 }
 
-/* HIDE */
-.bottom-dock.hide {
-  transform: translateY(100%);
+/* Click effect */
+.bottom-dock button:active {
+  transform: scale(0.9);
+}
+.bottom-dock button.active {
+  color: #00ffff;
+
+  text-shadow:
+    0 0 8px #00ffff,
+    0 0 20px #00ffff;
 }

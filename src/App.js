@@ -57,20 +57,36 @@ export default function Portfolio() {
   let lastScrollY = window.scrollY;
 
   const handleScroll = () => {
-    if (window.scrollY > lastScrollY) {
-      setShowDock(false); // scroll down
+    const currentScrollY = window.scrollY;
+
+    const scrollDiff = currentScrollY - lastScrollY;
+
+    const isNearBottom =
+      window.innerHeight + currentScrollY >= document.body.offsetHeight - 10;
+
+    // 👇 Ignore tiny movements (bounce effect fix)
+    if (Math.abs(scrollDiff) < 8) return;
+
+    // 👇 If at bottom, keep dock hidden
+    if (isNearBottom) {
+      setShowDock(false);
     } else {
-      setShowDock(true); // scroll up
+      if (scrollDiff > 0) {
+        // scrolling down
+        setShowDock(false);
+      } else {
+        // scrolling up
+        setShowDock(true);
+      }
     }
 
-    lastScrollY = window.scrollY;
+    lastScrollY = currentScrollY;
   };
 
   window.addEventListener("scroll", handleScroll);
 
   return () => window.removeEventListener("scroll", handleScroll);
 }, []);
-
 
   if (loading) {
     return (
